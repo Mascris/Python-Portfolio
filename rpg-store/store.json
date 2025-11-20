@@ -1,0 +1,15 @@
+{
+    "leather" : {"stock": 22, "price":167},
+    "silk" : {"stock": 16, "price": 362},
+    "rope" : {"stock": 74, "price": 82},
+    "jacket" : {"stock": 6, "price": 1783},
+    "key" : {"stock": 2, "price": 3562},
+    "golden_key" : {"stock": 1, "price": 9600},
+    "dagger" : {"stock": 7, "price": 2100},
+    "bow" : {"stock": 3, "price": 9420},
+    "sword" : {"stock": 3, "price": 6310},
+    "armor" : {"stock": 5, "price": 7560},
+    "crystal" : {"stock": 1, "price": 12000},
+    "compass" : {"stock": 1, "price": 1100}
+
+}

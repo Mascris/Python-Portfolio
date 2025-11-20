@@ -1,0 +1,19 @@
+FROM python:3.11-slim
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies needed for pymssql/pyodbc
+RUN apt-get update && \
+    apt-get install -y gcc g++ freetds-dev unixodbc-dev curl && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install Python packages
+RUN pip install --no-cache-dir pymssql pyodbc
+
+# Copy your project files
+COPY . .
+
+# Run your app
+CMD ["python", "./shop/main.py"]
+
