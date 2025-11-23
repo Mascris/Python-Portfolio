@@ -65,24 +65,22 @@ def get_players_data(for_buy=False):
             return None, None 
 
         with connect() as conn:
-            with conn.cursor() as cursor: # Use with statement for cursor
+            with conn.cursor() as cursor: 
                 cursor.execute("SELECT username,coins From players WHERE player_id = %s", (player_id,))
                 result = cursor.fetchone()
 
         if not result:
-            # If player_id was validated to be 1 or 2, this "not result" means
-            # the ID exists in the prompt but not in the DB, which is an inconsistency.
             print("⚠️ Player not found in the database. This should not happen for valid IDs 1 or 2.")
-            return None, None # Return None for both
+            return None, None 
 
         username, coins = result
         if not for_buy:
             print(f"\nUsername: {username}, Coins: {coins}")
-        return player_id, coins # Correctly returning both player_id and coins
+        return player_id, coins 
 
-    except ValueError: # Catches non-integer input
+    except ValueError: 
         print("⚠️ Invalid input. Please enter a whole number for Player ID.")
-        return None, None # Return None for both on error
-    except Exception as e: # Catches any other unexpected errors
+        return None, None 
+    except Exception as e: 
         print(f"An unexpected error occurred while fetching player data: {e}")
         return None, None 
