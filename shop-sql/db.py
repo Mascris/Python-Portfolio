@@ -8,9 +8,3 @@ def connect():
         database="shopdb"
     )
 
-
-
-
-
-
-
