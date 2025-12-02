@@ -1,15 +1,57 @@
-from logging import exception
 from db import connect
 from models import User,Movie,Rental
+import datetime
+from tabulate import tabulate
 
 class UserManager:
+    def __init__(self) -> None:
+        pass
+
     def add_user(self,name: str,email: str):
         try:
             with connect() as conn:
                 with conn.cursor() as cursor:
                     cursor.execute("insert into users(name,email)values(%s,%s)",(name,email))
                     conn.commit()
-
-        except exception as e:
+        except Exception as e:
             print(f"ERROR: adding User {e}.")
+
+    def find_user_by_email(self,email):
+        try:
+            with connect() as conn:
+                with conn.cursor() as cursor:
+                    sql = "SELECT name, email from users where email = %s"
+                    cursor.execute(sql, (email,))
+                    row = cursor.fetchone()
+
+                    if row:
+                        return User(row[0],row[1],row[2])
+                    return None
+        except Exception as e:
+            print(f"ERROR: finding user: {e}.")
+            return None
+
+class MovieManager:
+    def __init__(self) -> None:
+        pass
+
+    def add_movie(self,title: str,genre: str,daily_price: float,stock:int):
+        try:
+            with connect() as conn:
+                with conn.cursor() as cursor:
+                    cursor.execute("SELECT title from movies where title = %s",(title,))
+                    if cursor.fetchone():
+                        print(f"this Movie title: {title} is already exist")
+                   
+                    sql = "insert into movies (title,genre,daily_price,stock) values (%s,%s,%s,%s)"
+                    cursor.execute(sql,(title,genre,daily_price,stock))
+                    row = cursor.fetchone()
+                    if row:
+                        return Movie(row[0],row[1],row[2],row[3],row[4])
+
+        except Exception as e:
+            print(f"ERROR: adding movie {e}.")
+
+
+
 
