@@ -7,7 +7,8 @@ class UserManager:
         try:
             with connect() as conn:
                 with conn.cursor() as cursor:
-                    cursor.execute("insert into users(name,email)values(?,?)")
+                    cursor.execute("insert into users(name,email)values(%s,%s)",(name,email))
+                    conn.commit()
 
         except exception as e:
             print(f"ERROR: adding User {e}.")
