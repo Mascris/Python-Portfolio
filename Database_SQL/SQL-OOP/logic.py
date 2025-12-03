@@ -45,6 +45,7 @@ class MovieManager:
                    
                     sql = "insert into movies (title,genre,daily_price,stock) values (%s,%s,%s,%s)"
                     cursor.execute(sql,(title,genre,daily_price,stock))
+                    conn.commit()
                     row = cursor.fetchone()
                     if row:
                         return Movie(row[0],row[1],row[2],row[3],row[4])
@@ -53,5 +54,33 @@ class MovieManager:
             print(f"ERROR: adding movie {e}.")
 
 
+    def list_all_movies(self):
+        try:
+            with connect() as conn:
+                with conn.cursor() as cursor:
+                    sql = "SELECT title,genre,daily_price,stock from movies"
+                    cursor.execute(sql,)
+                    row = cursor.fetchall()
 
+                    if row:
+                        return User(row[0],row[1],row[2],row[3],row[4])
+                    return None
 
+        except Exception as e:
+            print(f"ERROR: Listing movies {e}.")
+     
+    def list_movie_by_title(self,title):
+        try:
+            with connect() as conn:
+                with conn.cursor() as cursor:
+                    sql = "SELECT title,genre,daily_price,stock from movies where title = %s"
+                    cursor.execute(sql,(title,))
+                    row = cursor.fetchone()
+                    
+                    if row :
+                        return Movie(row[0],row[1],row[2],row[3],row[4])
+                    return None
+        except Exception as e:
+            print(f"ERROR: Listing movies by this title {e}.")
+
+                            
