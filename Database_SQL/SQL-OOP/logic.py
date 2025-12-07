@@ -96,11 +96,25 @@ class RentalSystem:
         pass
     
     def rent_movie(self,user_email,movie_title):
-        user_email.find_user_by_email()
-        movie_title.list_movie_by_title()
+        user_email = self.find_user_by_email()
+        movie_title = self.list_movie_by_title()
 
         today = datetime.date.today()
         due_date = today + datetime.timedelta(days=7)
 
-        current_stock = row[4]
+        if not email:
+            print(f"this {user_email} doesnt exist")
+            return 
+    
+        if not movie:
+            print(f"this {movie_title} doesnt exist")
+            return
+        try:
+             with connect() as conn:
+                 with conn.cursor() as cursor:
+                     sql = "INSERT INTO rentals (user_id,movie_id,rental_date,due_date,return_date) VALUES (%s,%s,%s,%s)"
+                     cursor.execute(sql,(email,movie,today,due_date,))
+        except Exception as e:
+            print(f"ERROR: {e}")
+
                             
