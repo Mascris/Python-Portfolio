@@ -28,7 +28,7 @@ class UserManager:
                         return None
 
                     if row:
-                        return User(row[0],row[1],row[2])
+                        return User(row[0], row[1])
 
         except Exception as e:
             print(f"ERROR: finding user: {e}.")
@@ -67,7 +67,7 @@ class MovieManager:
                     row = cursor.fetchall()
 
                     if row:
-                        return User(row[1],row[2],row[3],row[4])
+                        return User(row[0],row[1],row[2],row[3],row[4])
                     return None
 
         except Exception as e:
@@ -86,7 +86,7 @@ class MovieManager:
                         return None
 
                     if row :
-                        return Movie(0,row[0],row[1],row[2],row[3])
+                        return Movie(row[0],row[1],row[2],row[3],row[4])
         except Exception as e:
             print(f"ERROR: Listing movies by this title {e}.")
 
