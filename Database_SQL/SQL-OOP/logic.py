@@ -133,4 +133,7 @@ class RentalSystem:
         except Exception as e:
             print(f"ERROR: {e}")
 
+    def return_movie(self,user_email,movie_title):
+        print("f")
+
                             
