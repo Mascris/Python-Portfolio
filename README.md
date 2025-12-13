@@ -16,7 +16,7 @@ This repository is organized into modules based on complexity and concept:
 | **📂 01_Basic_Scripts** | `randomness` | Logic puzzles, probability simulations, and algorithms. |
 | **📂 02_OOP_Systems** | `rpg-store`, `OOP-Project` | Virtual shop systems using classes, inheritance, and SOLID principles. |
 | **📂 03_Database_SQL** | `shop-sql`, `py-mssql` | Full CRUD applications integrating Python with MSSQL & SQLite. |
-| **🧪 Prototypes** | `idea` | Experimental scripts and scratchpad code for testing new concepts. |
+| **🧪 SandBox** | `idea` | Experimental scripts and scratchpad code for testing new concepts. |
 
 ## 💻 Code Showcase: SQL Integration
 
